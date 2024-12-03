@@ -13,7 +13,7 @@ public class Asgn1 {
         return distance;
     }
 
-    private static int countSimilarNums(List<Integer> list1, List<Integer> list2) {
+    private static int calculateSimilarity(List<Integer> list1, List<Integer> list2) {
         Map<Integer, Integer> map = new HashMap<>();
         for (Integer n : list2) {
             if (map.containsKey(n))
@@ -41,6 +41,6 @@ public class Asgn1 {
             list2.add(n2);
         }
         System.out.println(measureDistance(list1, list2));
-        System.out.println(countSimilarNums(list1, list2));
+        System.out.println(calculateSimilarity(list1, list2));
     }
 }
