@@ -1,5 +1,7 @@
 package org.cherniva.assignments;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -64,18 +66,22 @@ public class Asgn2 {
         return cnt;
     }
 
-    public static void solve() {
-        Scanner sc = new Scanner(System.in);
-        List<List<Integer>> listOfLists = new ArrayList<>();
-        while (sc.hasNextLine()) {
-            String line = sc.nextLine();
+    public static void solve(String filePath) {
+        try {
+            Scanner sc = new Scanner(new File(filePath));
+            List<List<Integer>> listOfLists = new ArrayList<>();
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
 
-            List<Integer> list = new ArrayList<>();
-            Scanner lineSc = new Scanner(line);
-            while (lineSc.hasNextInt()) list.add(lineSc.nextInt());
-            listOfLists.add(list);
+                List<Integer> list = new ArrayList<>();
+                Scanner lineSc = new Scanner(line);
+                while (lineSc.hasNextInt()) list.add(lineSc.nextInt());
+                listOfLists.add(list);
+            }
+            System.out.println(countSafeReports(listOfLists));
+            System.out.println(countSageReportsTolerateOne(listOfLists));
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
         }
-        System.out.println(countSafeReports(listOfLists));
-        System.out.println(countSageReportsTolerateOne(listOfLists));
     }
 }

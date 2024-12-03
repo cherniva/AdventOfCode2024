@@ -1,5 +1,7 @@
 package org.cherniva.assignments;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Asgn1 {
@@ -28,19 +30,23 @@ public class Asgn1 {
         return sum;
     }
 
-    public static void solve() {
-        Scanner sc = new Scanner(System.in);
-        List<Integer> list1 = new ArrayList<>();
-        List<Integer> list2 = new ArrayList<>();
-        while (sc.hasNextLine()) {
-            String line = sc.nextLine();
+    public static void solve(String filePath) {
+        try {
+            Scanner sc = new Scanner(new File(filePath));
+            List<Integer> list1 = new ArrayList<>();
+            List<Integer> list2 = new ArrayList<>();
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
 
-            int n1 = Integer.parseInt(line.substring(0, line.indexOf(" ")));
-            int n2 = Integer.parseInt(line.substring(line.lastIndexOf(" ")).trim());
-            list1.add(n1);
-            list2.add(n2);
+                int n1 = Integer.parseInt(line.substring(0, line.indexOf(" ")));
+                int n2 = Integer.parseInt(line.substring(line.lastIndexOf(" ")).trim());
+                list1.add(n1);
+                list2.add(n2);
+            }
+            System.out.println(measureDistance(list1, list2));
+            System.out.println(calculateSimilarity(list1, list2));
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
         }
-        System.out.println(measureDistance(list1, list2));
-        System.out.println(calculateSimilarity(list1, list2));
     }
 }
